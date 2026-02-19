@@ -5,8 +5,32 @@ import aboutPhoto from './assets/about.jpg'
 import project1 from "./assets/project1.jpeg"
 import project2 from "./assets/project2.jpeg"
 import project3 from "./assets/project3.jpeg"
+import sertifikat1 from "./assets/sertifikat1.jpg"
+import sertifikat2 from "./assets/sertifikat2.jpg"
+import sertifikat3 from "./assets/sertifikat3.jpg"
+
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaMicrosoft,
+  FaLaravel,
+  FaBootstrap,
+  FaPhp
+} from "react-icons/fa";
+
+import {
+  SiJavascript,
+  SiMysql,
+  SiCisco,
+  SiCanva,
+  SiCoreldraw,
+  SiVercel
+} from "react-icons/si";
+
 
 function App() {
+  const [selectedCert, setSelectedCert] = useState(null)
   const aboutRef = useRef(null)
   const [startTyping, setStartTyping] = useState(false)
   useEffect(() => {
@@ -32,7 +56,7 @@ function App() {
   }
 }, [])
   return (
-    <div className="text-white overflow-hidden">
+    <div className="text-white overflow-hidden bg-slate-950">
 
       {/* Glow Background */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500 opacity-20 blur-3xl rounded-full"></div>
@@ -50,9 +74,12 @@ function App() {
 
       {/* Menu tengah */}
       <div className="absolute left-1/2 -translate-x-1/2 flex space-x-8">
-        <a href="#about" className="hover:text-cyan-400 transition">About</a>
-        <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
-        <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
+       <a href="#about" className="hover:text-cyan-400 transition">About</a>
+<a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
+<a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
+<a href="#sertifikat" className="hover:text-cyan-400 transition">Sertifikat</a>
+<a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
+
       </div>
 
     </div>
@@ -100,7 +127,7 @@ function App() {
 
       {/* KANAN */}
       <div className="flex justify-center">
-      <div className="w-[300px] aspect-[4/5] overflow translate-y-20 cyan-400 p-2 shadow-[0_0_40px_rgba(34,211,238,0.6)]">
+      <div className="w-[300px] aspect-[4/5] overflow-hidden translate-y-20 border-2 border-cyan-400 p-2 shadow-[0_0_40px_rgba(34,211,238,0.6)]">
         <img
           src={heroPhoto}
           alt="Foto Hero"
@@ -176,76 +203,246 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
 
 </section>
 
+{/* ================= PROJECTS ================= */}
+<section
+  id="projects"
+  className="px-10 py-20 bg-slate-950 relative z-10"
+>
+  <h2 className="text-3xl text-cyan-400 font-bold text-center mb-12">
+    Proyek Saya
+  </h2>
 
-      {/* Projects */}
-      <section id="projects" className="min-h-screen pt-16
-    flex flex-col items-center justify-center text-center
-    bg-slate-950
-    relative">
-        <h2 className="text-3xl text-cyan-400 font-bold text-center mb-10">
-          Pacar Saya
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
 
-  {/* PROJECT 1 */}
-  <div className="group relative overflow-hidden rounded-xl hover:shadow-cyan-500/50 hover:shadow-2xl
-    ">
-    <img
-      src={project1}
-      alt="AI Website"
-      className="w-full aspect-[4/3] object-cover transform group-hover:scale-110 transition duration-500"
-    />
+    {/* Project 1 */}
+    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img
+        src={project1}
+        alt="Project 1"
+        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+      />
 
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-      <h3 className="text-white text-xl font-bold">
-        PAP IMUT 1
-      </h3>
+      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+        <p className="text-white font-semibold text-lg">AI Website</p>
+      </div>
     </div>
+
+    {/* Project 2 */}
+    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img
+        src={project2}
+        alt="Project 2"
+        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+      />
+
+      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+        <p className="text-white font-semibold text-lg">Dashboard Modern</p>
+      </div>
+    </div>
+
+    {/* Project 3 */}
+    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img
+        src={project3}
+        alt="Project 3"
+        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+      />
+
+      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+        <p className="text-white font-semibold text-lg">Company Profile</p>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  {/* PROJECT 2 */}
-  <div className="group relative overflow-hidden rounded-xl hover:shadow-cyan-500/50 hover:shadow-2xl
-    ">
-    <img
-      src={project2}
-      alt="Dashboard Modern"
-      className="w-full aspect-[4/3] object-cover transform group-hover:scale-110 transition duration-500"
-    />
+{/* Skills */}
+<section
+  id="skills"
+  className="px-10 py-24 bg-gray-900 text-center relative z-10"
+>
+  <h2 className="text-3xl text-cyan-400 font-bold mb-12">
+    Keahlian Saya
+  </h2>
 
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-      <h3 className="text-white text-xl font-bold">
-        PAP IMUT 2
-      </h3>
+  <div className="text-white">
+
+  <div className="flex gap-8 animate-scroll whitespace-nowrap py-6">
+
+    {/* HTML */}
+    <div className="skill-item">
+      <FaHtml5 size={45} className="text-orange-500" />
+      <p>HTML</p>
     </div>
-  </div>
 
-  {/* PROJECT 3 */}
-  <div className="group relative overflow-hidden rounded-xl hover:shadow-cyan-500/50 hover:shadow-2xl
-    ">
-    <img
-      src={project3}
-      alt="Company Profile"
-      className="w-full aspect-[4/3] object-cover transform group-hover:scale-110 transition duration-500"
-    />
-
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-      <h3 className="text-white text-xl font-bold">
-        PAP IMUT 3
-      </h3>
+    {/* CSS */}
+    <div className="skill-item">
+      <FaCss3Alt size={45} className="text-blue-500" />
+      <p>CSS</p>
     </div>
+
+    {/* React */}
+    <div className="skill-item">
+      <FaReact size={45} className="text-cyan-400" />
+      <p>React</p>
+    </div>
+
+    {/* JS */}
+    <div className="skill-item">
+      <SiJavascript size={45} className="text-yellow-400" />
+      <p>JavaScript</p>
+    </div>
+
+    {/* Bootstrap */}
+    <div className="skill-item">
+      <FaBootstrap size={45} className="text-purple-500" />
+      <p>Bootstrap</p>
+    </div>
+
+    {/* Laravel */}
+    <div className="skill-item">
+      <FaLaravel size={45} className="text-red-500" />
+      <p>Laravel</p>
+    </div>
+
+    {/* PHP */}
+    <div className="skill-item">
+      <FaPhp size={45} className="text-indigo-400" />
+      <p>PHP</p>
+    </div>
+
+    {/* MySQL */}
+    <div className="skill-item">
+      <SiMysql size={45} className="text-blue-400" />
+      <p>MySQL</p>
+    </div>
+
+    {/* Word */}
+    <div className="skill-item">
+      <FaMicrosoft size={45} className="text-blue-500" />
+      <p>Word</p>
+    </div>
+
+    {/* Excel */}
+    <div className="skill-item">
+      <FaMicrosoft size={45} className="text-green-500" />
+      <p>Excel</p>
+    </div>
+
+    {/* PowerPoint */}
+    <div className="skill-item">
+      <FaMicrosoft size={45} className="text-orange-500" />
+      <p>PowerPoint</p>
+    </div>
+
+    {/* Canva */}
+    <div className="skill-item">
+      <SiCanva size={45} className="text-cyan-300" />
+      <p>Canva</p>
+    </div>
+
+    {/* CorelDraw */}
+    <div className="skill-item">
+      <SiCoreldraw size={45} className="text-green-400" />
+      <p>CorelDraw</p>
+    </div>
+
+    {/* Cisco */}
+    <div className="skill-item">
+      <SiCisco size={45} className="text-blue-300" />
+      <p>Cisco</p>
+    </div>
+
+    {/* Vercel */}
+    <div className="skill-item">
+      <SiVercel size={45} />
+      <p>Vercel</p>
+    </div>
+
+    {/* DUPLIKAT supaya loop mulus */}
+    {/* copy beberapa item */}
+    <div className="skill-item">
+  <SiJavascript size={45} className="text-yellow-400" />
+  <p>JavaScript</p>
+</div>
+
+<div className="skill-item">
+  <FaBootstrap size={45} className="text-purple-500" />
+  <p>Bootstrap</p>
+</div>
+
+
   </div>
 
 </div>
 
+
       </section>
 
+{/* ================= SERTIFIKAT ================= */}
+<section
+  id="sertifikat"
+  className="px-10 py-24 bg-slate-950 relative z-10"
+>
+  <h2 className="text-3xl text-cyan-400 font-bold text-center mb-12">
+    Sertifikat Saya
+  </h2>
 
+  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
 
+    {/* Sertifikat 1 */}
+    <div className="bg-gray-900 p-4 rounded-xl shadow-lg hover:scale-105 transition">
+      <img
+        src={sertifikat1}
+        alt="sertifikat 1"
+        className="rounded-lg mb-4"
+      />
+      <button
+  onClick={() => setSelectedCert(sertifikat1)}
+  className="w-full py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 transition"
+>
+  Detail
+</button>
 
+    </div>
 
+    {/* Sertifikat 2 */}
+    <div className="bg-gray-900 p-4 rounded-xl shadow-lg hover:scale-105 transition">
+      <img
+        src={sertifikat2}
+        alt="sertifikat 2"
+        className="rounded-lg mb-4"
+      />
+      <button
+  onClick={() => setSelectedCert(sertifikat2)}
+  className="w-full py-2 rounded-lg bg-purple-500 hover:bg-purple-400 transition"
+>
+  Detail
+</button>
+
+    </div>
+
+    {/* Sertifikat 3 */}
+    <div className="bg-gray-900 p-4 rounded-xl shadow-lg hover:scale-105 transition">
+      <img
+        src={sertifikat3}
+        alt="sertifikat 3"
+        className="rounded-lg mb-4"
+      />
+      <button
+  onClick={() => setSelectedCert(sertifikat3)}
+  className="w-full py-2 rounded-lg bg-green-500 hover:bg-green-400 transition"
+>
+  Detail
+</button>
+
+    </div>
+
+  </div>
+</section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 mt-20 relative z-10">
+      <footer className="bg-slate-900 border-t border-slate-800 mt-0 relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
 
           <div>
@@ -278,6 +475,33 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
           © {new Date().getFullYear()} Muhammad Arrafi. All rights reserved.
         </div>
       </footer>
+{/* MODAL SERTIFIKAT */}
+{selectedCert && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+    onClick={() => setSelectedCert(null)}
+  >
+    <div
+      className="relative max-w-3xl w-full mx-4"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* tombol close */}
+      <button
+        onClick={() => setSelectedCert(null)}
+        className="absolute -top-10 right-0 text-white text-3xl hover:text-cyan-400"
+      >
+        ✕
+      </button>
+
+      {/* gambar */}
+      <img
+        src={selectedCert}
+        alt="preview"
+        className="rounded-xl shadow-2xl border-4 border-cyan-400"
+      />
+    </div>
+  </div>
+)}
 
     </div>
   )

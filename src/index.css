@@ -2,6 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+/* smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* ===============================
+   SKILL BOX STYLE
+================================ */
+
+.skill-item {
+  @apply flex flex-col items-center justify-center text-sm gap-2;
+
+  min-width: 120px;
+  height: 120px;
+
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 18px;
+
+  background: rgba(15, 23, 42, 0.6);
+
+  color: #cbd5e1;
+  font-weight: 500;
+
+  transition: all 0.35s ease;
+}
+
+/* hover effect */
+.skill-item:hover {
+  transform: translateY(-8px) scale(1.08);
+  border-color: #22d3ee;
+  color: #22d3ee;
+
+  box-shadow:
+    0 0 15px rgba(34, 211, 238, 0.6),
+    0 0 40px rgba(34, 211, 238, 0.25);
+}
+
+/* icon glow */
+.skill-item svg {
+  transition: 0.3s;
+}
+
+.skill-item:hover svg {
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.8));
+}
+
+/* ===============================
+   AUTO SCROLL ANIMATION
+================================ */
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* pause scroll saat hover */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+body {
+  background-color: #020617;
+}
+
+section {
+  scroll-margin-top: 80px;
 }
