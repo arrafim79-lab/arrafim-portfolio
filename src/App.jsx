@@ -8,6 +8,8 @@ import project3 from "./assets/project3.jpeg"
 import sertifikat1 from "./assets/sertifikat1.jpg"
 import sertifikat2 from "./assets/sertifikat2.jpg"
 import sertifikat3 from "./assets/sertifikat3.jpg"
+import { FaBars, FaTimes } from "react-icons/fa";
+
 
 import {
   FaHtml5,
@@ -30,6 +32,7 @@ import {
 
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
   const [selectedCert, setSelectedCert] = useState(null)
   const aboutRef = useRef(null)
   const [startTyping, setStartTyping] = useState(false)
@@ -59,31 +62,51 @@ function App() {
     <div className="text-white overflow-hidden bg-slate-950">
 
       {/* Glow Background */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-500 opacity-20 blur-3xl rounded-full"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-indigo-500 opacity-20 blur-3xl rounded-full"></div>
+      <div className="pointer-events-none absolute top-0 left-0 w-72 h-72 bg-cyan-500 opacity-20 blur-3xl rounded-full"></div>
+      <div className="pointer-events-none absolute bottom-0 right-0 w-72 h-72 bg-indigo-500 opacity-20 blur-3xl rounded-full"></div>
 
       {/* Navbar */}
      <nav className="fixed top-0 left-0 w-full bg-gray-900 text-white z-50 shadow-md">
   <div className="max-w-7xl mx-auto px-6">
-    <div className="h-16 flex items-center justify-between relative">
+    <div className="h-16 flex items-center justify-between">
 
-      {/* Logo kiri */}
+      {/* Logo */}
       <h1 className="text-cyan-400 font-bold text-xl">
         WEB
       </h1>
 
-      {/* Menu tengah */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex space-x-8">
-       <a href="#about" className="hover:text-cyan-400 transition">About</a>
-<a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
-<a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
-<a href="#sertifikat" className="hover:text-cyan-400 transition">Sertifikat</a>
-<a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
-
+      {/* MENU DESKTOP */}
+      <div className="hidden md:flex space-x-8">
+        <a href="#about" className="hover:text-cyan-400">About</a>
+        <a href="#projects" className="hover:text-cyan-400">Projects</a>
+        <a href="#skills" className="hover:text-cyan-400">Skills</a>
+        <a href="#sertifikat" className="hover:text-cyan-400">Sertifikat</a>
+        <a href="#contact" className="hover:text-cyan-400">Contact</a>
       </div>
+
+      {/* BUTTON MOBILE */}
+      <button
+        className="md:hidden text-2xl"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
 
     </div>
   </div>
+
+  {/* MENU MOBILE */}
+  {menuOpen && (
+    <div className="md:hidden bg-gray-900 border-t border-gray-800">
+      <div className="flex flex-col items-center py-4 space-y-4">
+        <a onClick={()=>setMenuOpen(false)} href="#about">About</a>
+        <a onClick={()=>setMenuOpen(false)} href="#projects">Projects</a>
+        <a onClick={()=>setMenuOpen(false)} href="#skills">Skills</a>
+        <a onClick={()=>setMenuOpen(false)} href="#sertifikat">Sertifikat</a>
+        <a onClick={()=>setMenuOpen(false)} href="#contact">Contact</a>
+      </div>
+    </div>
+  )}
 </nav>
 
 

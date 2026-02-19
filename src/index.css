@@ -2,9 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================
+   GLOBAL SETTINGS
+================================ */
+
 /* smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* dark background */
+body {
+  background-color: #020617;
+}
+
+/* offset anchor scroll (navbar height) */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* ===============================
+   GLOW BACKGROUND FIX
+   (agar tidak nutup klik menu)
+================================ */
+
+.glow-bg {
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ===============================
@@ -25,7 +49,7 @@ html {
   color: #cbd5e1;
   font-weight: 500;
 
-  transition: all 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, color 0.35s ease;
 }
 
 /* hover effect */
@@ -41,7 +65,7 @@ html {
 
 /* icon glow */
 .skill-item svg {
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .skill-item:hover svg {
@@ -71,16 +95,4 @@ html {
 /* pause scroll saat hover */
 .animate-scroll:hover {
   animation-play-state: paused;
-}
-
-body {
-  background-color: #020617;
-}
-
-section {
-  scroll-margin-top: 80px;
-}
-
-section {
-  scroll-margin-top: 90px;
 }
