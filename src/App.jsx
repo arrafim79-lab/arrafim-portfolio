@@ -45,7 +45,7 @@ function App() {
 
       {/* Logo kiri */}
       <h1 className="text-cyan-400 font-bold text-xl">
-        WEB PORTFOLIO
+        WEB
       </h1>
 
       {/* Menu tengah */}
