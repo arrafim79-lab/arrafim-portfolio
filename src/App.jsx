@@ -206,61 +206,64 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
 {/* ================= PROJECTS ================= */}
 <section
   id="projects"
-  className="px-10 py-20 bg-slate-950 relative z-10"
+  className="min-h-screen flex flex-col justify-center bg-slate-950 relative z-10 py-20"
 >
-  <h2 className="text-3xl text-cyan-400 font-bold text-center mb-12">
-    Proyek Saya
-  </h2>
+  <div className="max-w-6xl mx-auto w-full px-10">
 
-  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+    <h2 className="text-3xl text-cyan-400 font-bold text-center mb-12">
+      Proyek Saya
+    </h2>
 
-    {/* Project 1 */}
-    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
-      <img
-        src={project1}
-        alt="Project 1"
-        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
-      />
+    <div className="grid md:grid-cols-3 gap-8">
 
-      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-        <p className="text-white font-semibold text-lg">AI Website</p>
+      {/* Project 1 */}
+      <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+        <img
+          src={project1}
+          alt="Project 1"
+          className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p className="text-white font-semibold text-lg">AI Website</p>
+        </div>
       </div>
-    </div>
 
-    {/* Project 2 */}
-    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
-      <img
-        src={project2}
-        alt="Project 2"
-        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
-      />
-
-      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-        <p className="text-white font-semibold text-lg">Dashboard Modern</p>
+      {/* Project 2 */}
+      <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+        <img
+          src={project2}
+          alt="Project 2"
+          className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p className="text-white font-semibold text-lg">Dashboard Modern</p>
+        </div>
       </div>
-    </div>
 
-    {/* Project 3 */}
-    <div className="group relative overflow-hidden rounded-xl cursor-pointer">
-      <img
-        src={project3}
-        alt="Project 3"
-        className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
-      />
-
-      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-        <p className="text-white font-semibold text-lg">Company Profile</p>
+      {/* Project 3 */}
+      <div className="group relative overflow-hidden rounded-xl cursor-pointer">
+        <img
+          src={project3}
+          alt="Project 3"
+          className="w-full aspect-[4/3] object-cover transition duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p className="text-white font-semibold text-lg">Company Profile</p>
+        </div>
       </div>
+
     </div>
 
   </div>
 </section>
 
+
 {/* Skills */}
 <section
   id="skills"
-  className="px-10 py-24 bg-gray-900 text-center relative z-10"
+  className="min-h-screen flex flex-col justify-center px-10 py-20 bg-gray-900 text-center relative z-10"
 >
+  <div className="max-w-6xl mx-auto w-full px-10 text-center">
   <h2 className="text-3xl text-cyan-400 font-bold mb-12">
     Keahlian Saya
   </h2>
@@ -370,7 +373,7 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
   <FaBootstrap size={45} className="text-purple-500" />
   <p>Bootstrap</p>
 </div>
-
+</div>
 
   </div>
 
@@ -382,8 +385,9 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
 {/* ================= SERTIFIKAT ================= */}
 <section
   id="sertifikat"
-  className="px-10 py-24 bg-slate-950 relative z-10"
+  className="min-h-screen flex flex-col justify-center px-10 py-20 bg-slate-950 relative z-10"
 >
+  <div className="max-w-6xl mx-auto w-full px-10 text-center">
   <h2 className="text-3xl text-cyan-400 font-bold text-center mb-12">
     Sertifikat Saya
   </h2>
@@ -435,7 +439,7 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
 >
   Detail
 </button>
-
+</div>
     </div>
 
   </div>
