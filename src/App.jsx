@@ -9,7 +9,7 @@ import sertifikat1 from "./assets/sertifikat1.jpg"
 import sertifikat2 from "./assets/sertifikat2.jpg"
 import sertifikat3 from "./assets/sertifikat3.jpg"
 import { FaBars, FaTimes } from "react-icons/fa";
-
+import { FaGithub, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 import {
   FaHtml5,
@@ -29,35 +29,52 @@ import {
   SiCoreldraw,
   SiVercel
 } from "react-icons/si";
-
+const GITHUB_USERNAME = "arrafim79-lab";
 
 function App() {
+  
+  const [githubData, setGithubData] = useState(null)
+  const [totalStars, setTotalStars] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [selectedCert, setSelectedCert] = useState(null)
   const aboutRef = useRef(null)
   const [startTyping, setStartTyping] = useState(false)
+
+useEffect(() => {
+  const username = "arrafim79-lab";
+
+  // ambil data user
+  fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+    .then(res => res.json())
+    .then(data => setGithubData(data));
+
+  // ambil semua repo untuk hitung stars
+  fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`)
+    .then(res => res.json())
+    .then(repos => {
+      const stars = repos.reduce((total, repo) => total + repo.stargazers_count, 0);
+      setTotalStars(stars);
+    });
+
+}, []);
   useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setStartTyping(true)
-        }
-      })
-    },
-    { threshold: 0.4 }
-  )
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setStartTyping(true)
+      }
+    })
+  }, { threshold: 0.4 })
 
   if (aboutRef.current) {
     observer.observe(aboutRef.current)
   }
 
   return () => {
-    if (aboutRef.current) {
-      observer.unobserve(aboutRef.current)
-    }
+    if (aboutRef.current) observer.unobserve(aboutRef.current)
   }
 }, [])
+
   return (
     <div className="text-white overflow-hidden bg-slate-950">
 
@@ -81,6 +98,7 @@ function App() {
         <a href="#projects" className="hover:text-cyan-400">Projects</a>
         <a href="#skills" className="hover:text-cyan-400">Skills</a>
         <a href="#sertifikat" className="hover:text-cyan-400">Sertifikat</a>
+         <a href="#github" className="hover:text-cyan-400">Stats</a>
         <a href="#contact" className="hover:text-cyan-400">Contact</a>
       </div>
 
@@ -124,11 +142,11 @@ function App() {
 
         <TypeAnimation
           sequence={[
-            'AI Web Developer',
+            'Web Developer',
             1000,
             '',
             500,
-            'Menggabungkan teknologi web dan kecerdasan buatan untuk solusi digital inovatif dan future-ready.',
+            'Menggabungkan teknologi web dan kecerdasan buatan.',
             2000,
           ]}
           wrapper="div"
@@ -213,7 +231,7 @@ function App() {
 Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberapa kali pernah mengikuti pertandingan Taekwondo. Pernah menjadi pelatih Taekwondo selama 2 tahun dan terakhir memegang sabuk Merah Strip 2.`,
     ]}
     wrapper="p"
-    speed={30}
+    speed={100}
     cursor={true}
     repeat={0}
     className="text-gray-400 leading-relaxed whitespace-pre-line"
@@ -468,6 +486,73 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
   </div>
 </section>
 
+{/* ================= GITHUB STATS ================= */}
+<section
+  id="github"
+  className="min-h-screen flex flex-col justify-center px-10 py-20 bg-gray-900 text-center relative z-10"
+>
+  <div className="max-w-6xl mx-auto w-full">
+
+    <h2 className="text-3xl text-cyan-400 font-bold mb-12">
+      GitHub Statistics
+    </h2>
+
+    {/* Contribution Graph */}
+    <div className="bg-slate-950 p-6 rounded-xl border border-cyan-400/30 shadow-lg mb-12 overflow-x-auto">
+      <img
+        src="https://ghchart.rshah.org/22d3ee/arrafim79-lab"
+        alt="github contributions"
+        className="w-full"
+      />
+      <div className="flex justify-between text-gray-400 text-sm mt-2">
+        <span>Less</span>
+        <span>More</span>
+      </div>
+    </div>
+
+    {/* Stats Cards */}
+    <div className="grid md:grid-cols-4 gap-6">
+
+      {/* Repo */}
+      <div className="bg-slate-950 p-6 rounded-xl shadow-lg border border-cyan-400/20">
+        <p className="text-gray-400">Repository</p>
+        <h3 className="text-4xl font-bold text-cyan-400 mt-2">
+          {githubData?.public_repos ?? "--"}
+        </h3>
+        <p className="text-gray-500 text-sm">public repo</p>
+      </div>
+
+      {/* Stars */}
+      <div className="bg-slate-950 p-6 rounded-xl shadow-lg border border-yellow-400/20">
+        <p className="text-gray-400">Bintang</p>
+        <h3 className="text-4xl font-bold text-yellow-400 mt-2">
+          {totalStars}
+        </h3>
+        <p className="text-gray-500 text-sm">total stars</p>
+      </div>
+
+      {/* Contributions */}
+      <div className="bg-slate-950 p-6 rounded-xl shadow-lg border border-green-400/20">
+        <p className="text-gray-400">Kontribusi</p>
+        <h3 className="text-4xl font-bold text-green-400 mt-2">
+          Active
+        </h3>
+        <p className="text-gray-500 text-sm">last year</p>
+      </div>
+
+      {/* Followers */}
+      <div className="bg-slate-950 p-6 rounded-xl shadow-lg border border-purple-400/20">
+        <p className="text-gray-400">Pengikut</p>
+        <h3 className="text-4xl font-bold text-purple-400 mt-2">
+          {githubData?.followers ?? "--"}
+        </h3>
+        <p className="text-gray-500 text-sm">GitHub followers</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 mt-0 relative z-10">
         <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
@@ -486,7 +571,9 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
             <ul className="space-y-2 text-gray-400">
               <li><a href="#about" className="hover:text-cyan-400">Tentang</a></li>
               <li><a href="#projects" className="hover:text-cyan-400">Proyek</a></li>
-              <li><a href="#contact" className="hover:text-cyan-400">Kontak</a></li>
+              <li><a href="#skills" className="hover:text-cyan-400">Skill</a></li>
+              <li><a href="#sertifikat" className="hover:text-cyan-400">Sertifikat</a></li>
+              <li><a href="#github" className="hover:text-cyan-400">stats</a></li>
             </ul>
           </div>
 
@@ -496,6 +583,45 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
             <p className="text-gray-400">WhatsApp: +6289528990464</p>
           </div>
 
+{/* SOCIAL ICONS */}
+<div className="flex justify-center md:justify-start gap-3 mt-4">
+  <a
+    href="https://github.com/arrafim79-lab"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-11 h-11 flex items-center justify-center rounded-full bg-slate-800 hover:scale-110 transition"
+  >
+    <FaGithub size={18} />
+  </a>
+
+  <a
+    href="https://facebook.com/Shiroi Neko"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-600 hover:scale-110 transition"
+  >
+    <FaFacebook size={18} />
+  </a>
+
+  <a
+    href="https://instagram.com/muhamadrfi_"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-11 h-11 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:scale-110 transition"
+  >
+    <FaInstagram size={18} />
+  </a>
+
+  <a
+    href="https://wa.me/6289528990464"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-11 h-11 flex items-center justify-center rounded-full bg-green-500 hover:scale-110 transition"
+  >
+    <FaWhatsapp size={18} />
+  </a>
+
+</div>
         </div>
 
         <div className="text-center text-gray-500 border-t border-slate-800 py-4">
