@@ -10,6 +10,7 @@ import sertifikat2 from "./assets/sertifikat2.jpg"
 import sertifikat3 from "./assets/sertifikat3.jpg"
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FaGithub, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserGraduate } from "react-icons/fa";
 
 import {
   FaHtml5,
@@ -98,7 +99,7 @@ useEffect(() => {
         <a href="#projects" className="hover:text-cyan-400">Projects</a>
         <a href="#skills" className="hover:text-cyan-400">Skills</a>
         <a href="#sertifikat" className="hover:text-cyan-400">Sertifikat</a>
-         <a href="#github" className="hover:text-cyan-400">Stats</a>
+         <a href="#github" className="hover:text-cyan-400">Github</a>
         <a href="#contact" className="hover:text-cyan-400">Contact</a>
       </div>
 
@@ -121,6 +122,7 @@ useEffect(() => {
         <a onClick={()=>setMenuOpen(false)} href="#projects">Projects</a>
         <a onClick={()=>setMenuOpen(false)} href="#skills">Skills</a>
         <a onClick={()=>setMenuOpen(false)} href="#sertifikat">Sertifikat</a>
+        <a onClick={()=>setMenuOpen(false)} href="#github">Github</a>
         <a onClick={()=>setMenuOpen(false)} href="#contact">Contact</a>
       </div>
     </div>
@@ -237,7 +239,51 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
     className="text-gray-400 leading-relaxed whitespace-pre-line"
   />
 )}
+{/* INFO BOX */}
+<div className="mt-10 grid md:grid-cols-2 gap-5">
 
+  <div className="flex items-center gap-3 p-4 rounded-xl border border-cyan-400/20 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 backdrop-blur-md">
+    <FaMapMarkerAlt className="text-cyan-400 text-lg" />
+    <p>Riau, Indonesia</p>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 rounded-xl border border-emerald-400/20 bg-gradient-to-r from-green-900/40 to-teal-900/40 backdrop-blur-md">
+    <FaEnvelope className="text-emerald-400 text-lg" />
+    <p>arrafim79@gmail.com</p>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 rounded-xl border border-purple-400/20 bg-gradient-to-r from-purple-900/40 to-pink-900/40 backdrop-blur-md">
+    <FaPhoneAlt className="text-purple-400 text-lg" />
+    <p>+6289528990464</p>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 rounded-xl border border-orange-400/20 bg-gradient-to-r from-orange-900/40 to-red-900/40 backdrop-blur-md">
+    <FaUserGraduate className="text-orange-400 text-lg" />
+    <p>Mahasiswa S1</p>
+  </div>
+
+</div>
+
+{/* BUTTON */}
+<div className="mt-8 flex flex-wrap gap-4">
+
+  <a
+    href="/Muhammad-Arrafi-CV.pdf"
+    download
+    className="px-7 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 font-semibold text-white shadow-lg hover:scale-105 transition"
+  >
+    Unduh CV
+  </a>
+
+  <a
+    href="https://wa.me/6289528990464"
+    target="_blank"
+    className="px-7 py-3 rounded-full border border-cyan-400 text-cyan-400 font-semibold hover:bg-cyan-400 hover:text-black transition"
+  >
+    Rekrut Saya
+  </a>
+
+</div>
     </div>
 
   </div>
