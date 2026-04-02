@@ -40,6 +40,29 @@ function App() {
   const [selectedCert, setSelectedCert] = useState(null)
   const aboutRef = useRef(null)
   const [startTyping, setStartTyping] = useState(false)
+  const audioRef = useRef(null)
+  const [hasPlayed, setHasPlayed] = useState(false)
+
+ useEffect(() => {
+  const playAudio = () => {
+    if (!hasPlayed && audioRef.current) {
+      audioRef.current.play()
+        .then(() => setHasPlayed(true))
+        .catch(() => {})
+    }
+  }
+
+  // semua kemungkinan interaksi user
+  window.addEventListener("scroll", playAudio)
+  window.addEventListener("click", playAudio)
+  window.addEventListener("touchstart", playAudio)
+
+  return () => {
+    window.removeEventListener("scroll", playAudio)
+    window.removeEventListener("click", playAudio)
+    window.removeEventListener("touchstart", playAudio)
+  }
+}, [hasPlayed])
 
 useEffect(() => {
   const username = "arrafim79-lab";
@@ -701,7 +724,9 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
     </div>
   </div>
 )}
-
+<audio ref={audioRef} loop>
+  <source src="/music/lagu.mp3" type="audio/mpeg" />
+</audio>
     </div>
   )
 }
