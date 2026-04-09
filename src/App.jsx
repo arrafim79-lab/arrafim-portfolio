@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { TypeAnimation } from 'react-type-animation'
-import heroPhoto from './assets/hero.jpg'
+import { FaPlay, FaPause } from "react-icons/fa";
 import aboutPhoto from './assets/about.jpg'
-import project1 from "./assets/project1.jpeg"
-import project2 from "./assets/project2.jpeg"
-import project3 from "./assets/project3.jpeg"
+import project1 from "./assets/project1.png"
+import project2 from "./assets/project2.png"
+import project3 from "./assets/project3.png"
 import sertifikat1 from "./assets/sertifikat1.jpg"
 import sertifikat2 from "./assets/sertifikat2.jpg"
 import sertifikat3 from "./assets/sertifikat3.jpg"
@@ -33,7 +33,9 @@ import {
 const GITHUB_USERNAME = "arrafim79-lab";
 
 function App() {
-  
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [githubData, setGithubData] = useState(null)
   const [totalStars, setTotalStars] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -42,25 +44,37 @@ function App() {
   const [startTyping, setStartTyping] = useState(false)
   const audioRef = useRef(null)
   const [hasPlayed, setHasPlayed] = useState(false)
+  
 
- useEffect(() => {
-  const playAudio = () => {
+ const toggleMusic = () => {
+  if (!audioRef.current) return
+
+  if (isPlaying) {
+    audioRef.current.pause()
+    setIsPlaying(false)
+  } else {
+    audioRef.current.play()
+    setIsPlaying(true)
+    setHasPlayed(true)
+  }
+}
+
+useEffect(() => {
+  const handleFirstPlay = () => {
     if (!hasPlayed && audioRef.current) {
       audioRef.current.play()
-        .then(() => setHasPlayed(true))
+        .then(() => {
+          setHasPlayed(true)
+          setIsPlaying(true)
+        })
         .catch(() => {})
     }
   }
 
-  // semua kemungkinan interaksi user
-  window.addEventListener("scroll", playAudio)
-  window.addEventListener("click", playAudio)
-  window.addEventListener("touchstart", playAudio)
+  window.addEventListener("click", handleFirstPlay)
 
   return () => {
-    window.removeEventListener("scroll", playAudio)
-    window.removeEventListener("click", playAudio)
-    window.removeEventListener("touchstart", playAudio)
+    window.removeEventListener("click", handleFirstPlay)
   }
 }, [hasPlayed])
 
@@ -193,18 +207,84 @@ useEffect(() => {
 
       {/* KANAN */}
       <div className="flex justify-center">
-      <div className="w-[300px] aspect-[4/5] overflow-hidden translate-y-20 border-2 border-cyan-400 p-2 shadow-[0_0_40px_rgba(34,211,238,0.6)]">
-        <img
-          src={heroPhoto}
-          alt="Foto Hero"
-          className="w-full h-full object-cover object-[60%_50%]"
-        />
+      
+        <div className="flex flex-col items-center gap-1">
+
+  <div className="mt-10 w-[300px] aspect-square overflow-hidden border-2 border-cyan-400 p-2 shadow-[0_0_40px_rgba(34,211,238,0.6)] rounded-t-2xl">
+    
+    <video
+      src="/video/hero.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover object-center rounded-xl"
+    ></video>
+
+  </div>
+
+  {/* PLAYER */}
+  <div className="w-[300px] bg-slate-900/90 rounded-b-2xl px-4 py-3 -mt-2">
+
+  {/* PROGRESS (ATAS) */}
+  <div className="w-full mb-3">
+    <input
+      type="range"
+      min="0"
+      max={duration || 0}
+      value={currentTime || 0}
+      onChange={(e) => {
+        const value = Number(e.target.value)
+        if (!audioRef.current) return
+        audioRef.current.currentTime = value
+        setCurrentTime(value)
+      }}
+      className="w-full h-[3px] appearance-none rounded-full cursor-pointer"
+      style={{
+        background: `linear-gradient(to right, #ffffff ${(currentTime / duration) * 100}%, #555 ${(currentTime / duration) * 100}%)`
+      }}
+    />
+  </div>
+
+  {/* TOMBOL (BAWAH) */}
+  <div className="flex items-center justify-between">
+
+    {/* kiri (menu icon fake) */}
+    <div className="w-6 h-[2px] bg-white relative">
+      <div className="absolute top-2 w-6 h-[2px] bg-white"></div>
+    </div>
+
+    {/* tengah (control utama) */}
+    <div className="flex items-center gap-5">
+
+      {/* prev */}
+      <span className="text-white text-xl cursor-pointer">⏮️</span>
+
+      {/* play */}
+      <button
+        onClick={toggleMusic}
+        className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black"
+      >
+        {isPlaying ? <FaPause size={16} /> : <FaPlay size={16} />}
+      </button>
+
+      {/* next */}
+      <span className="text-white text-xl cursor-pointer">⏭️</span>
+
+    </div>
+
+    {/* kanan (heart fake) */}
+    <span className="text-white text-xl">♡</span>
+
+  </div>
+
+</div>
+
+</div>
       </div>
       </div>
 
     </div>
-
-  </div>
 
 </section>
 
@@ -664,7 +744,7 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
   </a>
 
   <a
-    href="https://facebook.com/Shiroi Neko"
+    href="https://facebook.com/ShiroiNeko"
     target="_blank"
     rel="noopener noreferrer"
     className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-600 hover:scale-110 transition"
@@ -724,7 +804,21 @@ Saya juga memiliki skill beladiri Taekwondo. Berlatih di Duri–Riau dan beberap
     </div>
   </div>
 )}
-<audio ref={audioRef} loop>
+<audio
+  ref={audioRef}
+  preload="auto"
+  onTimeUpdate={() => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime)
+    }
+  }}
+  onLoadedMetadata={() => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration)
+    }
+  }}
+  onEnded={() => setIsPlaying(false)}
+>
   <source src="/music/lagu.mp3" type="audio/mpeg" />
 </audio>
     </div>
